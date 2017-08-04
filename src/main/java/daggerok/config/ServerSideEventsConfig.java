@@ -19,4 +19,18 @@ public class ServerSideEventsConfig {
                            .handle((p, h) -> Flux.just("foo", "bar", "baz"))
                            .get();
   }
+/*
+  @Bean
+  public IntegrationFlow uppercase(MongoOperations mongoOperations) {
+    return IntegrationFlows.from(Function.class)
+                           .handle(MongoDb.outboundGateway(mongoOperations)
+                                          .queryFunction(msg ->
+                                                             Query.query(Criteria.where("name")
+                                                                                 .is(msg.getPayload())))
+                                          .collectionNameExpression("headers.collection")
+                                          .expectSingleResult(true)
+                                          .entityClass(Person.class))
+                           .get();
+  }
+*/
 }
