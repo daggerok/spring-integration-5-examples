@@ -1,0 +1,32 @@
+group: edge
+dist: trusty
+language: java
+jdk: oraclejdk8
+install: true
+before_install:
+  - sudo apt update
+  - sudo apt install -y curl
+  #- sudo apt install -y python-pip curl jq libxml2-utils
+  #- sudo pip install docker-compose
+  #- sudo usermod -aG docker $(whoami)
+  # kill pg port 5432
+  #- true | sudo kill $(sudo lsof -t -i:5432)
+script:
+  # build app / test
+  - bash gradlew clean build
+  # install app / run
+  - sudo mkdir -p /var/app
+  - sudo mv -f ./build/libs/*.jar /var/app/boot.jar
+  - sudo ln -s /var/app/boot.jar /etc/init.d/boot
+  - sudo service boot start
+  - sleep 10
+  #- curl localhost:8080/sse -H'accept:text/event-stream'
+  - curl localhost:8080/sse
+  - sleep 1
+  - sudo service boot stop
+after_script:
+  - gradle --stop
+cache:
+  directories:
+    - $HOME/.gradle/
+    - .gradle/
