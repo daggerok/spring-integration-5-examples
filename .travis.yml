@@ -1,32 +1,58 @@
 group: edge
 dist: trusty
+
 language: java
-jdk: oraclejdk8
+jdk:
+  - openjdk8
+  - oraclejdk8
+
 install: true
 before_install:
+
+  # install docker-compose
   - sudo apt update
-  - sudo apt install -y curl
-  #- sudo apt install -y python-pip curl jq libxml2-utils
-  #- sudo pip install docker-compose
-  #- sudo usermod -aG docker $(whoami)
-  # kill pg port 5432
-  #- true | sudo kill $(sudo lsof -t -i:5432)
+  - sudo apt install -y python-pip curl jq libxml2-utils
+  - sudo pip install docker-compose httpie
+  - sudo usermod -aG docker $(whoami)
+
+  # kill whatever punning on postgres / rabbitmq port
+  - sudo kill $(sudo lsof -t -i:5432) | true
+  - sudo kill $(sudo lsof -t -i:5672) | true
+  - sudo kill $(sudo lsof -t -i:27017) | true
+
 script:
-  # build app / test
+  - export ROOT=$PWD
+  - >
+    for path in \
+      01-spring-integration-5-example \
+    ; do
+      export TARGET="$ROOT/$path"
+      cd $TARGET
+      bash gradlew clean build
+    done;
+
+  # 01 e2e
+  - cd $ROOT/01-spring-integration-5-example
   - bash gradlew clean build
-  # install app / run
   - sudo mkdir -p /var/app
-  - sudo mv -f ./build/libs/*.jar /var/app/boot.jar
-  - sudo ln -s /var/app/boot.jar /etc/init.d/boot
-  - sudo service boot start
+  - sudo mv -f ./build/libs/*.jar /var/app/01.jar
+  - sudo ln -s /var/app/01.jar /etc/init.d/01
+  - sudo service 01 start
   - sleep 10
-  #- curl localhost:8080/sse -H'accept:text/event-stream'
   - curl localhost:8080/sse
   - sleep 1
-  - sudo service boot stop
+  - sudo service 01 stop
+
 after_script:
-  - gradle --stop
+  - bash gradlew --stop
+  - sudo killall java | true
+
+before_cache:
+  - rm -rf $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -rf $HOME/.gradle/caches/*/plugin-resolution/
+
 cache:
   directories:
-    - $HOME/.gradle/
-    - .gradle/
+    - $HOME/.m2/
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
