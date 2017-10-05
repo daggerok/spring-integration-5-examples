@@ -1,6 +1,6 @@
 buildscript {
   ext {
-    springBootVersion = "2.0.0.M4"
+    springBootVersion = "2.0.0.M3"
     springIntegrationVersion = "5.0.0.M6"
   }
   repositories {
@@ -49,4 +49,9 @@ bootJar {
   launchScript {
     included = true
   }
+}
+
+wrapper {
+  gradleVersion = "4.2.1"
+  distributionType = "ALL"
 }

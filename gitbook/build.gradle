@@ -1,0 +1,30 @@
+plugins {
+  id "idea"
+  id "java"
+  id "com.moowork.node" version "1.2.0"
+}
+
+sourceSets {
+  examples
+}
+
+node {
+  version = "5.12.0"
+  npmVersion = "5.3.0"
+  yarnVersion = "v0.24.5"
+  distBaseUrl = "http://nodejs.org/dist"
+  download = true
+  workDir = file("$project.buildDir/nodejs")
+}
+
+clean {
+  delete "$buildDir"
+  // delete "$projectDir/node_modules"
+  delete "$rootDir/docs"
+  delete "$projectDir/package-lock.json"
+  delete "$projectDir/yarn.lock"
+}
+
+task buildDocs(dependsOn: [npm_run_docs])
+buildDocs.dependsOn examplesClasses
+assemble.dependsOn buildDocs

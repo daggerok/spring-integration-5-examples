@@ -21,6 +21,10 @@ before_install:
   - sudo kill $(sudo lsof -t -i:27017) | true
 
 script:
+  # gitbbok
+  - bash gradlew buildDocs
+
+  # all
   - export ROOT=$PWD
   - >
     for path in \
@@ -38,14 +42,13 @@ script:
   - sudo mv -f ./build/libs/*.jar /var/app/01.jar
   - sudo ln -s /var/app/01.jar /etc/init.d/01
   - sudo service 01 start
-  - sleep 10
-  - curl localhost:8080/sse
+  - sleep 15
+  - curl localhost:8080/sse &
   - sleep 1
   - sudo service 01 stop
 
 after_script:
   - bash gradlew --stop
-  - sudo killall java | true
 
 before_cache:
   - rm -rf $HOME/.gradle/caches/modules-2/modules-2.lock
