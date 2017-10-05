@@ -28,6 +28,7 @@ script:
   - export ROOT=$PWD
   - >
     for path in \
+      02-spring-integration-5-example \
       01-spring-integration-5-example \
     ; do
       export TARGET="$ROOT/$path"
@@ -59,3 +60,4 @@ cache:
     - $HOME/.m2/
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
+    - gitbook/node_modules/

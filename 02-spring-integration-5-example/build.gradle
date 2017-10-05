@@ -1,0 +1,58 @@
+buildscript {
+  ext {
+    springBootVersion = "2.0.0.M4"
+  }
+  repositories {
+    mavenCentral()
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+  }
+}
+
+plugins {
+  id "idea"
+  id "eclipse"
+}
+
+allprojects { ap ->
+
+  apply plugin: "java"
+
+  group = "daggerok"
+  version = "0.0.1"
+  sourceCompatibility = sourceCompatibility = 1.8
+
+  repositories {
+    mavenCentral()
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
+  }
+
+  wrapper {
+    gradleVersion = "4.2.1"
+    distributionType = "ALL"
+  }
+}
+
+subprojects { sp ->
+
+  apply plugin: "org.springframework.boot"
+  apply plugin: "io.spring.dependency-management"
+
+  dependencies {
+    compile("org.springframework.boot:spring-boot-starter-integration")
+    compile("org.springframework.boot:spring-boot-starter-webflux")
+    compileOnly("org.projectlombok:lombok")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile("io.projectreactor:reactor-test")
+  }
+
+  bootJar {
+    launchScript {
+      included = true
+    }
+  }
+}
