@@ -3,3 +3,7 @@
 this repository is containing spring-integration 5 examples
 
 . link:01-spring-integration-5-example[sse]
+
+links:
+
+. link:https://github.com/spring-projects/spring-integration-java-dsl/wiki/spring-integration-java-dsl-reference[Java DSL]
