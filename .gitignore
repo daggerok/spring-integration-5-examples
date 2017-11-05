@@ -1,7 +1,6 @@
 out/
 .gradle
 build/
-!gradle/wrapper/gradle-wrapper.jar
 .DS_Store
 *.log
 node_modules/

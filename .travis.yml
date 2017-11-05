@@ -1,6 +1,10 @@
 group: edge
 dist: trusty
 
+env:
+  global:
+    TERM=dumb
+
 language: java
 jdk:
   - openjdk8
@@ -28,8 +32,8 @@ script:
   - export ROOT=$PWD
   - >
     for path in \
-      02-spring-integration-5-example \
-      01-spring-integration-5-example \
+      spring-integration-5-example-02 \
+      spring-integration-5-example-01 \
     ; do
       export TARGET="$ROOT/$path"
       cd $TARGET
@@ -37,7 +41,7 @@ script:
     done;
 
   # 01 e2e
-  - cd $ROOT/01-spring-integration-5-example
+  - cd $ROOT/spring-integration-5-example-01
   - bash gradlew clean build
   - sudo mkdir -p /var/app
   - sudo mv -f ./build/libs/*.jar /var/app/01.jar

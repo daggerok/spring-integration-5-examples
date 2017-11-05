@@ -19,7 +19,7 @@ node {
 
 clean {
   delete "$buildDir"
-  // delete "$projectDir/node_modules"
+  delete "$projectDir/node_modules"
   delete "$rootDir/docs"
   delete "$projectDir/package-lock.json"
   delete "$projectDir/yarn.lock"
@@ -28,3 +28,8 @@ clean {
 task buildDocs(dependsOn: [npm_run_docs])
 buildDocs.dependsOn examplesClasses
 assemble.dependsOn buildDocs
+
+task wrapper(type: Wrapper) {
+  gradleVersion = "4.3"
+  distributionType = "ALL"
+}
