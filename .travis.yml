@@ -25,8 +25,8 @@ before_install:
   - sudo kill $(sudo lsof -t -i:27017) | true
 
 script:
-  # gitbbok
-  - bash gradlew buildDocs
+  ## gitbbok
+  #- bash gradlew buildDocs
 
   # all
   - export ROOT=$PWD
@@ -61,7 +61,5 @@ before_cache:
 
 cache:
   directories:
-    - $HOME/.m2/
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
+    - docs/
     - gitbook/node_modules/
