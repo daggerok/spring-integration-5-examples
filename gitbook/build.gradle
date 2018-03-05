@@ -9,20 +9,24 @@ sourceSets {
 }
 
 node {
+  download = true
   version = "5.12.0"
   npmVersion = "5.3.0"
   yarnVersion = "v0.24.5"
-  distBaseUrl = "http://nodejs.org/dist"
-  download = true
   workDir = file("$project.buildDir/nodejs")
 }
+clean.doFirst {
+  [
+      "out", 
+      "build", 
+      ".gradle",
+      "yarn.lock",
+      "node_modules",
+      "package-lock.json",
 
-clean {
-  delete "$buildDir"
-  delete "$projectDir/node_modules"
+  ].each { delete "$projectDir/$it" }
+
   delete "$rootDir/docs"
-  delete "$projectDir/package-lock.json"
-  delete "$projectDir/yarn.lock"
 }
 
 task buildDocs(dependsOn: [npm_run_docs])
@@ -30,6 +34,8 @@ buildDocs.dependsOn examplesClasses
 assemble.dependsOn buildDocs
 
 task wrapper(type: Wrapper) {
-  gradleVersion = "4.3"
+  gradleVersion = "4.6"
   distributionType = "ALL"
 }
+
+defaultTasks "clean", "build"
