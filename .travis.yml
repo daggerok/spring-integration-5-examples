@@ -22,7 +22,7 @@ script:
 - bash gradlew clean gitbook
 - export root=$(pwd)
 # xml-message
-- cd $root/xml-hello
+- cd $root/xml-channel
 - bash ./mvnw
 - bash target/*.jar &
 - wait_for 8080
@@ -44,6 +44,7 @@ script:
 # others
 - >
   for path in \
+    xml-message \
     xml-hello \
     xml-starter \
     spring-integration-5-example-02 \
