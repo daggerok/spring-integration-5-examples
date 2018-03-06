@@ -1,4 +1,4 @@
-= service activator image:https://travis-ci.org/daggerok/spring-integration-5-examples.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/spring-integration-5-examples"]
+= endpoint image:https://travis-ci.org/daggerok/spring-integration-5-examples.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/spring-integration-5-examples"]
 
 //tag::content[]
 .gradle
