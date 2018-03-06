@@ -1,13 +1,13 @@
-group: trusty_lts
 service:
 - docker
 env:
   global:
   - TERM=dumb
 language: java
+jdk: oraclejdk8
 #jdk:
+#-oraclejdk8
 #- openjdk8
-#- oraclejdk8
 install: true
 before_install:
 # install docker-compose
@@ -19,10 +19,10 @@ before_install:
 - stop_any 5432 5672 27017 3000 8000 8080 80 27017 5672 5432
 script:
 # gitbook
-- bash gradlew clean buildDocs
-# all
+- bash gradlew clean gitbook
 - export ROOT=$PWD
-- cd $ROOT/hello-xml
+# xml-hello
+- cd $ROOT/xml-hello
 - bash ./mvnw
 - bash target/*.jar &
 - wait_for 8080
@@ -30,16 +30,6 @@ script:
 - http :8080 message=hello!
 - http :8080 ololo=trololo
 - stop_any 8080 8000 80
-- >
-  for path in \
-    xml-starter \
-    spring-integration-5-example-02 \
-    spring-integration-5-example-01 \
-  ; do
-    export TARGET="$ROOT/$path"
-    cd $TARGET
-    bash gradlew clean build
-  done;
 # 01 e2e
 - cd $ROOT/spring-integration-5-example-01
 - bash gradlew clean build
@@ -51,6 +41,16 @@ script:
 - curl localhost:8080/sse &
 - sleep 1
 - sudo service 01 stop
+# others
+- >
+  for path in \
+    xml-starter \
+    spring-integration-5-example-02 \
+  ; do
+    export TARGET="$ROOT/$path"
+    cd $TARGET
+    bash gradlew clean build
+  done;
 cache:
   directories:
   - docs/

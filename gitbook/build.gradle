@@ -15,6 +15,7 @@ node {
   yarnVersion = "v0.24.5"
   workDir = file("$project.buildDir/nodejs")
 }
+
 clean.doFirst {
   [
       "out", 
@@ -29,9 +30,9 @@ clean.doFirst {
   delete "$rootDir/docs"
 }
 
-task buildDocs(dependsOn: [npm_run_docs])
-buildDocs.dependsOn examplesClasses
-assemble.dependsOn buildDocs
+task gitbook(dependsOn: [npm_run_docs])
+gitbook.dependsOn examplesClasses
+assemble.dependsOn gitbook
 
 task wrapper(type: Wrapper) {
   gradleVersion = "4.6"

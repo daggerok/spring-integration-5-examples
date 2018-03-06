@@ -2,17 +2,17 @@ version: "2.1"
 
 services:
 
-  gradle-xml-starter-app:
+  gradle-xml-app:
     build:
       context: .
       dockerfile: gradle/Dockerfile
-    volumes: ["gradle-xml-starter-app-data:/home/app"]
+    volumes: ["gradle-xml-app-data:/home/app"]
     ports: ["8080:8080"]
     networks: [backing-services]
     mem_limit: 786432000 # container limit: 700Mb (700 * 1024 * 1024)
 
 volumes:
-  gradle-xml-starter-app-data: {}
+  gradle-xml-app-data: {}
 
 networks:
   backing-services:

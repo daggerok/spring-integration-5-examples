@@ -1,19 +1,11 @@
-= spring-integration-5-example image:https://travis-ci.org/daggerok/spring-integration-5-examples.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/spring-integration-5-examples"]
+= spring-integration-5-examples image:https://travis-ci.org/daggerok/spring-integration-5-examples.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/spring-integration-5-examples"]
 
 this repository is containing spring-integration 5 examples
 
-. link:hello-xml[simple xml example]
+. link:xml-hello[simple xml example]
 . link:spring-integration-5-example-01[sse]
 . link:reactive-data-flow-systems/[reactive data-flow systems]
 
-### docs
-
-.build gitbook docs
-----
-cd gitbook/
-bash gradlew clean build
-----
-
-### links:
+links:
 
 . link:https://github.com/spring-projects/spring-integration-java-dsl/wiki/spring-integration-java-dsl-reference[Java DSL]
