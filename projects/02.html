@@ -1,0 +1,269 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Other example | GitBook Example</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-katex/katex.min.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../projects/xml-hello.html" />
+    
+    
+    <link rel="prev" href="../projects/01.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="2"
+        data-chapter-title="Other example"
+        data-filepath="projects/02.md"
+        data-basepath=".."
+        data-revision="Tue Mar 06 2018 22:29:43 GMT+0200 (EET)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+                
+                <li>
+                    <a href="mailto:daggerok@gmail.com" target="blank" class="custom-link">Contact us</a>
+                </li>
+            
+            
+
+            
+            <li class="divider"></li>
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="projects/01.html">
+            
+                
+                    <a href="../projects/01.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Spring Integration 5 example
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="2" data-path="projects/02.html">
+            
+                
+                    <a href="../projects/02.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Other example
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="projects/xml-hello.html">
+            
+                
+                    <a href="../projects/xml-hello.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        XML examples
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="projects/xml-message.html">
+            
+                
+                    <a href="../projects/xml-message.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Message component
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="projects/xml-channel.html">
+            
+                
+                    <a href="../projects/xml-channel.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Channel component
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >GitBook Example</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="springintegration5examples-">spring-integration-5-examples <a href="https://travis-ci.org/daggerok/spring-integration-5-examples" target="_blank"><img src="https://travis-ci.org/daggerok/spring-integration-5-examples.svg?branch=master" alt="Build Status"></a></h1>
+<h4 id="build-run-test">build, run, test</h4>
+<pre><code class="lang-bash">bash gradle clean build
+http post :<span class="hljs-number">8080</span>/ payload=message1
+http post :<span class="hljs-number">8080</span>/ payload=message2
+http post :<span class="hljs-number">8080</span>/ payload=message3
+</code></pre>
+<p>links:</p>
+<ul>
+<li><a href="https://docs.spring.io/spring-integration/docs/5.0.0.M7/reference/htmlsingle/" target="_blank">reference</a></li>
+<li><a href="https://docs.spring.io/spring-integration/docs/5.0.0.M7/reference/htmlsingle/#overview-components" target="_blank">main components</a><ul>
+<li><a href="https://docs.spring.io/spring-integration/docs/5.0.0.M7/reference/htmlsingle/#message" target="_blank">Message</a></li>
+<li><a href="https://docs.spring.io/spring-integration/docs/5.0.0.M7/reference/htmlsingle/#cannel" target="_blank">Message Channels</a></li>
+<li><a href="https://docs.spring.io/spring-integration/docs/5.0.0.M7/reference/htmlsingle/#polling-consumer" target="_blank">AbstractEndpoint</a></li>
+<li><a href="https://docs.spring.io/spring-integration/docs/5.0.0.M7/reference/htmlsingle/#programming-considerations" target="_blank">TODO: Continue from</a></li>
+</ul>
+</li>
+</ul>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../projects/01.html" class="navigation navigation-prev " aria-label="Previous page: Spring Integration 5 example"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../projects/xml-hello.html" class="navigation navigation-next " aria-label="Next page: XML examples"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"katex":{},"include":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
