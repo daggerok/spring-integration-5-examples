@@ -6,3 +6,4 @@
 * [XML examples](projects/xml-hello.md)
 * [Message component](projects/xml-message.md)
 * [Channel component](projects/xml-channel.md)
+* [Service activator](projects/xml-channel.md)
