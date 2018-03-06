@@ -5,6 +5,7 @@ buildscript {
     kotlinVersion = "1.2.30"
     springCloudVersion = "Finchley.M6"
     springBootVersion = "2.0.0.RELEASE"
+    springIntegrationVersion = "5.0.2.RELEASE"
   }
 }
 
@@ -79,7 +80,7 @@ dependencies {
 
 dependencyManagement {
   imports {
-    mavenBom "org.springframework.integration:spring-integration-bom:5.0.1.RELEASE"
+    mavenBom "org.springframework.integration:spring-integration-bom:$springIntegrationVersion"
     mavenBom "org.springframework.boot:spring-boot-dependencies:$springBootVersion"
     mavenBom "org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"
   }

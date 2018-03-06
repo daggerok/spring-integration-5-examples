@@ -22,6 +22,7 @@
     <lombok.version>1.16.20</lombok.version>
     <spring-cloud.version>Finchley.M6</spring-cloud.version>
     <spring-boot.version>${project.parent.version}</spring-boot.version>
+    <spring-integration.version>5.0.2.RELEASE</spring-integration.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
     <maven.compiler.source>1.8</maven.compiler.source>
@@ -237,7 +238,7 @@
       <dependency>
         <groupId>org.springframework.integration</groupId>
         <artifactId>spring-integration-bom</artifactId>
-        <version>5.0.1.RELEASE</version>
+        <version>${spring-integration.version}</version>
         <scope>import</scope>
         <type>pom</type>
       </dependency>
