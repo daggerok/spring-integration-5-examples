@@ -1,8 +1,6 @@
 package daggerok.rest
 
 import daggerok.App
-import org.springframework.boot.ApplicationArguments
-import org.springframework.boot.ApplicationRunner
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
@@ -11,13 +9,11 @@ import org.springframework.http.MediaType
 import org.springframework.integration.channel.DirectChannel
 import org.springframework.messaging.Message
 import org.springframework.messaging.support.MessageBuilder
-import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.server.ServerResponse.accepted
 import org.springframework.web.reactive.function.server.ServerResponse.ok
 import org.springframework.web.reactive.function.server.router
 import reactor.core.publisher.Mono
 
-@Service("receiver")
 class MyReceiver {
   fun receive(message: Message<*>) {
     println("headers:")

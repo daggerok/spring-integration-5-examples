@@ -16,7 +16,7 @@ import org.springframework.web.reactive.function.server.ServerResponse.ok
 import org.springframework.web.reactive.function.server.router
 import reactor.core.publisher.Mono
 
-@Service("receiver")
+@Service
 class MyReceiver(val messageChannel: DirectChannel) : ApplicationRunner {
   override fun run(args: ApplicationArguments?) {
     messageChannel.subscribe {

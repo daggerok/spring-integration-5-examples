@@ -17,4 +17,7 @@
   <!-- endpoint -->
   <int:service-activator ref="receiver" input-channel="inputChannel" method="handle"/>
 
+  <!-- beans -->
+  <bean id="receiver" class="daggerok.rest.MyReceiver" />
+
 </beans>

@@ -1,40 +1,27 @@
 package daggerok.rest
 
 import daggerok.App
-import org.springframework.boot.ApplicationRunner
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.ImportResource
+import org.springframework.core.ParameterizedTypeReference
 import org.springframework.http.MediaType
+import org.springframework.integration.channel.DirectChannel
+import org.springframework.integration.core.MessagingTemplate
 import org.springframework.messaging.Message
-import org.springframework.messaging.support.GenericMessage
 import org.springframework.messaging.support.MessageBuilder
 import org.springframework.web.reactive.function.server.ServerResponse.accepted
 import org.springframework.web.reactive.function.server.ServerResponse.ok
 import org.springframework.web.reactive.function.server.router
 import reactor.core.publisher.Mono
-
-// Abstract endpoint will be provided by spring-integration
-interface MyGateway {
-  fun process(message: Message<*>): Unit
-}
-
-// spring-integration will pass messaging to that registered endpoint service activator
-class MyReceiver {
-  fun handle(message: Message<*>): Unit {
-    println("\nheaders:")
-    message.headers.forEach { println(it) }
-    println("\npayload")
-    println(message.payload)
-  }
-}
+import java.util.Map
 
 @Configuration
 @ComponentScan(basePackageClasses = [App::class])
 @ImportResource("classpath:/config/spring-integration.xml")
-class WebfluxRoutesConfig(val gw: MyGateway) {
-
+class WebfluxRoutesConfig(val messageChannel: DirectChannel,
+                          val messagingTemplate: MessagingTemplate) {
   @Bean
   fun routes() = router {
 
@@ -49,28 +36,38 @@ class WebfluxRoutesConfig(val gw: MyGateway) {
         )
       }
 
-      POST("/generic") {
-        accepted().body(
-            it.bodyToMono(String::class.java)
-                .map { GenericMessage(it) }
-                .map { gw.process(it) }
-                .map { "done" }, String::class.java
-        )
-      }
-
       POST("/**") {
         accepted().body(
             it.bodyToMono(String::class.java)
                 .map {
                   MessageBuilder
                       .withPayload(it)
-                      .setHeader("my header key", "my header value")
                       .build()
                 }
-                .map { gw.process(it) }
-                .map { "done" }, String::class.java
+                .map {
+                  val message = messagingTemplate.sendAndReceive(messageChannel, it) as Message<String>
+                  val response = message.headers.toMutableMap()
+                  response["payload"] = message.payload
+                  response
+                }, ParameterizedTypeReference.forType(Map::class.java)
         )
       }
     }
+  }
+}
+
+class MyTransformer {
+  fun transform(message: Message<*>): Message<String> {
+
+    println("original headers:")
+    println(message.headers)
+    println("original payload:")
+    println(message.payload)
+
+    return MessageBuilder
+        .withPayload("response of ${message.payload}")
+        //.setHeader("id", message.headers["id"]) // id header is read-only
+        .setHeader("correlationId", message.headers["id"])
+        .build()
   }
 }

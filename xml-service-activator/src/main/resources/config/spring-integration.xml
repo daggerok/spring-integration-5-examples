@@ -6,6 +6,9 @@
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
 
+  <!-- beans -->
+  <bean id="receiver" class="daggerok.rest.MyReceiver" />
+
   <!-- channel -->
   <int:channel id="messageChannel"/>
 

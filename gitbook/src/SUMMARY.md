@@ -8,3 +8,4 @@
 * [Channel component](projects/xml-channel.md)
 * [Service activator](projects/xml-service-activator.md)
 * [Endpoint transformer (processor)](projects/xml-endpoint.md)
+* [Messaging template (processor)](projects/xml-messaging-template.md)

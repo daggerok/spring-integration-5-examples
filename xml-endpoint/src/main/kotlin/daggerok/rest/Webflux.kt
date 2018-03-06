@@ -17,7 +17,6 @@ import org.springframework.web.reactive.function.server.ServerResponse.ok
 import org.springframework.web.reactive.function.server.router
 import reactor.core.publisher.Mono
 
-@Service("transformer")
 class MyTransformer {
   fun transform(message: Message<*>): Message<String> {
 
@@ -50,6 +49,7 @@ class MyReceiver(val responseMessageChannel: DirectChannel) : ApplicationRunner 
 @ComponentScan(basePackageClasses = [App::class])
 @ImportResource("classpath:/config/spring-integration.xml")
 class WebfluxRoutesConfig(val requestMessageChannel: DirectChannel) {
+
   @Bean
   fun routes() = router {
 
