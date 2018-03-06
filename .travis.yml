@@ -23,7 +23,7 @@ script:
 - export root=$(pwd)
 # xml-message
 - cd $root/xml-channel
-- bash ./mvnw
+- bash ./mvnw >/dev/null 2>&1
 - bash target/*.jar &
 - wait_for 8080
 - http :8080
@@ -32,7 +32,7 @@ script:
 - stop_any 8080 8000 80
 # 01 e2e
 - cd $root/spring-integration-5-example-01
-- bash gradlew clean build
+- bash gradlew clean build >/dev/null 2>&1
 - sudo mkdir -p /var/app
 - sudo mv -f ./build/libs/*.jar /var/app/01.jar
 - sudo ln -s /var/app/01.jar /etc/init.d/01
@@ -50,7 +50,7 @@ script:
     spring-integration-5-example-02 \
   ; do
     cd $root/$path
-    bash gradlew clean build
+    bash gradlew clean build >/dev/null 2>&1
   done;
 cache:
   directories:
