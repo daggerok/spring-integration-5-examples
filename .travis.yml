@@ -24,7 +24,7 @@ script:
 - export ROOT=$PWD
 - cd $ROOT/hello-xml
 - bash ./mvnw
-- bash target/*.jar
+- bash target/*.jar &
 - wait_for 8080
 - http :8080
 - http :8080 message=hello!
