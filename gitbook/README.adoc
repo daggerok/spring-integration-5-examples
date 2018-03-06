@@ -1,6 +1,6 @@
 = spring-integration-5-examples | gitbook image:https://travis-ci.org/daggerok/spring-integration-5-examples.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/spring-integration-5-examples"]
 
-.build docs
+.build and publish docs
 ----
-./gradlew clean gitbook
+./gradlew clean gitbook deploy
 ----

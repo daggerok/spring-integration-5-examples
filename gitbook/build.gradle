@@ -1,19 +1,41 @@
-plugins {
-  id "idea"
-  id "java"
-  id "com.moowork.node" version "1.2.0"
+buildscript {
+  ext {
+    gitBookBuildDir = "$buildDir/gitbook"
+  }
+  configurations.all {
+    resolutionStrategy {
+      force "com.jcraft:jsch:0.1.54"
+    }
+  }
 }
 
-sourceSets {
-  examples
+plugins {
+  id "base"
+  id "com.moowork.node" version "1.2.0"
+  id "org.asciidoctor.convert" version "1.5.7"
+  id "org.ajoberstar.git-publish" version "0.3.0"
 }
+
+group "daggerok"
+version "2.0.0"
+
+defaultTasks "clean", "gitbook", "build"
+
+task wrapper(type: Wrapper) {
+  gradleVersion = "4.6"
+  distributionType = "ALL"
+}
+
+/**
+ * 1. gitbook
+ */
 
 node {
   download = true
   version = "5.12.0"
   npmVersion = "5.3.0"
   yarnVersion = "v0.24.5"
-  workDir = file("$project.buildDir/nodejs")
+  workDir = file("$buildDir/nodejs")
 }
 
 clean.doFirst {
@@ -26,16 +48,35 @@ clean.doFirst {
 
   ].each { delete "$projectDir/$it" }
 
-  delete "$rootDir/docs"
+  delete "$gitBookBuildDir"
 }
 
 task gitbook(dependsOn: [npm_run_docs])
-gitbook.dependsOn examplesClasses
-assemble.dependsOn gitbook
 
-task wrapper(type: Wrapper) {
-  gradleVersion = "4.6"
-  distributionType = "ALL"
+/**
+ * 2. gh-pages publish
+ */
+
+/* // We already doing with node (see package.json)
+gitbook.doLast {
+  file("$gitBookBuildDir/html5/404.html").text = file("$gitBookBuildDir/html5/index.html").text
+  file("$gitBookBuildDir/html5/.nojekyll").text = "\n"
+}
+*/
+
+// read more: https://github.com/ajoberstar/gradle-git-publish
+gitPublish {
+  repoUri = "git@github.com:daggerok/spring-integration-5-examples.git"
+  branch = "gh-pages"
+  contents {
+    // from "somewhere/else"
+    from "$gitBookBuildDir"
+    into "."
+  }
+  commitMessage = "Publish documentation for ${project.group}:${project.name}:$project.version"
 }
 
-defaultTasks "clean", "gitbook", "build"
+gitPublishPush.dependsOn gitbook
+gitPublishPush.shouldRunAfter clean, gitbook, build
+
+task deploy(dependsOn: gitPublishPush)
