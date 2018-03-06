@@ -22,7 +22,6 @@ clean.doFirst {
       "build", 
       ".gradle",
       "yarn.lock",
-      "node_modules",
       "package-lock.json",
 
   ].each { delete "$projectDir/$it" }
@@ -39,4 +38,4 @@ task wrapper(type: Wrapper) {
   distributionType = "ALL"
 }
 
-defaultTasks "clean", "build"
+defaultTasks "clean", "gitbook", "build"

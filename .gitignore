@@ -1,10 +1,10 @@
 spring-integration-5-example-RC1/
-out/
-.gradle
-build/
-.DS_Store
-*.log
 node_modules/
+.gradle/
+target/
+build/
+out/
+.DS_Store
 yarn.lock
 package-lock.json
 
@@ -21,6 +21,7 @@ package-lock.json
 *.iws
 *.iml
 *.ipr
+*.log*
 
 ### NetBeans ###
 nbproject/private/

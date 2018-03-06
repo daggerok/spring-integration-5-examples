@@ -20,18 +20,18 @@ before_install:
 script:
 # gitbook
 - bash gradlew clean gitbook
-- export ROOT=$PWD
-# xml-hello
-- cd $ROOT/xml-hello
+- export root=$(pwd)
+# xml-message
+- cd $root/xml-hello
 - bash ./mvnw
 - bash target/*.jar &
 - wait_for 8080
 - http :8080
-- http :8080 message=hello!
-- http :8080 ololo=trololo
+- http :8080 message=message\ builder\ hello
+- http :8080/generic message=generic\ message\ hello
 - stop_any 8080 8000 80
 # 01 e2e
-- cd $ROOT/spring-integration-5-example-01
+- cd $root/spring-integration-5-example-01
 - bash gradlew clean build
 - sudo mkdir -p /var/app
 - sudo mv -f ./build/libs/*.jar /var/app/01.jar
@@ -44,14 +44,14 @@ script:
 # others
 - >
   for path in \
+    xml-hello \
     xml-starter \
     spring-integration-5-example-02 \
   ; do
-    export TARGET="$ROOT/$path"
-    cd $TARGET
+    cd $root/$path
     bash gradlew clean build
   done;
 cache:
   directories:
-  - docs/
-  - gitbook/node_modules/
+  - node_modules
+  - gitbook/node_modules

@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Spring Integration 5 example | GitBook Example</title>
+        <title>Spring Integration XML examples | GitBook Example</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -41,10 +41,10 @@
         
     
     
-    <link rel="next" href="../projects/xml-hello.html" />
+    <link rel="next" href="../projects/xml-message.html" />
     
     
-    <link rel="prev" href="../projects/01.html" />
+    <link rel="prev" href="../projects/02.html" />
     
 
         
@@ -53,9 +53,9 @@
         
         
     <div class="book"
-        data-level="2"
-        data-chapter-title="Spring Integration 5 example"
-        data-filepath="projects/02.md"
+        data-level="3"
+        data-chapter-title="Spring Integration XML examples"
+        data-filepath="projects/xml-hello.md"
         data-basepath=".."
         data-revision="Tue Mar 06 2018 21:27:00 GMT+0200 (EET)"
         data-innerlanguage="">
@@ -108,7 +108,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2" data-path="projects/02.html">
+        <li class="chapter " data-level="2" data-path="projects/02.html">
             
                 
                     <a href="../projects/02.html">
@@ -123,7 +123,7 @@
             
         </li>
     
-        <li class="chapter " data-level="3" data-path="projects/xml-hello.html">
+        <li class="chapter active" data-level="3" data-path="projects/xml-hello.html">
             
                 
                     <a href="../projects/xml-hello.html">
@@ -186,24 +186,12 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="springintegration5examples-">spring-integration-5-examples <a href="https://travis-ci.org/daggerok/spring-integration-5-examples" target="_blank"><img src="https://travis-ci.org/daggerok/spring-integration-5-examples.svg?branch=master" alt="Build Status"></a></h1>
-<h4 id="build-run-test">build, run, test</h4>
-<pre><code class="lang-bash">bash gradle clean build
-http post :<span class="hljs-number">8080</span>/ payload=message1
-http post :<span class="hljs-number">8080</span>/ payload=message2
-http post :<span class="hljs-number">8080</span>/ payload=message3
+                        <h1 id="spring-integration-xml-example-">spring integration xml example <a href="https://travis-ci.org/daggerok/spring-integration-5-examples" target="_blank"><img src="https://travis-ci.org/daggerok/spring-integration-5-examples.svg?branch=master" alt="Build Status"></a></h1>
+<h2 id="build-run-test">build, run, test</h2>
+<pre><code class="lang-bash">./gradlew <span class="hljs-comment"># or ./mvnw</span>
+http :<span class="hljs-number">8080</span>
+http :<span class="hljs-number">8080</span> message=hello
 </code></pre>
-<p>links:</p>
-<ul>
-<li><a href="https://docs.spring.io/spring-integration/docs/5.0.0.M7/reference/htmlsingle/" target="_blank">reference</a></li>
-<li><a href="https://docs.spring.io/spring-integration/docs/5.0.0.M7/reference/htmlsingle/#overview-components" target="_blank">main components</a><ul>
-<li><a href="https://docs.spring.io/spring-integration/docs/5.0.0.M7/reference/htmlsingle/#message" target="_blank">Message</a></li>
-<li><a href="https://docs.spring.io/spring-integration/docs/5.0.0.M7/reference/htmlsingle/#cannel" target="_blank">Message Channels</a></li>
-<li><a href="https://docs.spring.io/spring-integration/docs/5.0.0.M7/reference/htmlsingle/#polling-consumer" target="_blank">AbstractEndpoint</a></li>
-<li><a href="https://docs.spring.io/spring-integration/docs/5.0.0.M7/reference/htmlsingle/#programming-considerations" target="_blank">TODO: Continue from</a></li>
-</ul>
-</li>
-</ul>
 
                     
                     </section>
@@ -214,10 +202,10 @@ http post :<span class="hljs-number">8080</span>/ payload=message3
         </div>
 
         
-        <a href="../projects/01.html" class="navigation navigation-prev " aria-label="Previous page: Spring Integration 5 example"><i class="fa fa-angle-left"></i></a>
+        <a href="../projects/02.html" class="navigation navigation-prev " aria-label="Previous page: Spring Integration 5 example"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../projects/xml-hello.html" class="navigation navigation-next " aria-label="Next page: Spring Integration XML examples"><i class="fa fa-angle-right"></i></a>
+        <a href="../projects/xml-message.html" class="navigation navigation-next " aria-label="Next page: Spring Integration message component"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
