@@ -2,6 +2,7 @@
 
 this repository is containing spring-integration 5 examples
 
+. link:hello-xml[simple xml example]
 . link:spring-integration-5-example-01[sse]
 . link:reactive-data-flow-systems/[reactive data-flow systems]
 

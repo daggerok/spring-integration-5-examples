@@ -22,6 +22,14 @@ script:
 - bash gradlew clean buildDocs
 # all
 - export ROOT=$PWD
+- cd $ROOT/hello-xml
+- bash ./mvnw
+- bash target/*.jar
+- wait_for 8080
+- http :8080
+- http :8080 message=hello!
+- http :8080 ololo=trololo
+- stop_any 8080 8000 80
 - >
   for path in \
     xml-starter \
