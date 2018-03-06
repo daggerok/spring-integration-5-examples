@@ -11,9 +11,9 @@ jdk: oraclejdk8
 install: true
 before_install:
 # install docker-compose
-- sudo apt update -y || true
-- sudo apt install -y --no-install-recommends docker-ce python-pip curl jq libxml2-utils
-- sudo pip install docker-compose httpie
+- sudo apt update -y || true >/dev/null 2>&1
+- sudo apt install -y --no-install-recommends docker-ce python-pip curl jq libxml2-utils >/dev/null 2>&1
+- sudo pip install docker-compose httpie >/dev/null 2>&1
 # kill on ports
 - source <(curl -s https://raw.githubusercontent.com/daggerok/bash-functions/master/main.bash)
 - stop_any 5432 5672 27017 3000 8000 8080 80 27017 5672 5432
