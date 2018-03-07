@@ -2,6 +2,9 @@
 
 this repository is containing spring-integration 5 examples
 
+. link:xml-messaging-template[messaging-template component]
+. link:xml-service-activator[service activator component]
+. link:xml-endpoint[endpoint component]
 . link:xml-channel[chanel component]
 . link:xml-message[message component]
 . link:xml-hello[simple xml example]
