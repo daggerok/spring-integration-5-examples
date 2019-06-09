@@ -1,5 +1,7 @@
 = spring-integration-5-examples image:https://travis-ci.org/daggerok/spring-integration-5-examples.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/spring-integration-5-examples"]
 
+see this! link:https://github.com/daggerok/spring-cloud-function-stream-integration[spring-cloud-function and spring-cloud-stream integration]
+
 this repository is containing spring-integration 5 examples
 
 . link:xml-messaging-template[messaging-template component]
