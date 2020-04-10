@@ -27,9 +27,8 @@ jobs:
     - stage: test
       name: xml-message
       script:
-        - cd ./xml-channel
-        - ./mvnw
-        - bash target/*.jar &
+        - cd $TRAVIS_BUILD_DIR/xml-channel && ./mvnw
+        - bash $TRAVIS_BUILD_DIR/xml-channel/target/*.jar &
         - wait_for 8080
         - http :8080
         - http :8080 message=message\ builder\ hello
@@ -38,10 +37,9 @@ jobs:
     - stage: test
       name: spring-integration-5-example-01
       script:
-        - cd ./spring-integration-5-example-01
-        - ./gradlew clean build
+        - cd $TRAVIS_BUILD_DIR/spring-integration-5-example-01 && ./gradlew clean build
         - sudo mkdir -p /var/app
-        - sudo mv -f ./build/libs/*.jar /var/app/01.jar
+        - sudo mv -f $TRAVIS_BUILD_DIR/spring-integration-5-example-01/build/libs/*.jar /var/app/01.jar
         - sudo ln -s /var/app/01.jar /etc/init.d/01
         - sudo service 01 start
         - sleep 15
@@ -51,7 +49,6 @@ jobs:
     - stage: test
       name: others
       script:
-        - export root=$(pwd)
         - >
           for path in \
             xml-message \
@@ -59,8 +56,8 @@ jobs:
             xml-starter \
             spring-integration-5-example-02 \
           ; do
-            cd $root/$path && ./gradlew clean build
-          done;
+              cd $TRAVIS_BUILD_DIR/$path && ./gradlew clean build
+            done;
 cache:
   directories:
   - ~/.n*
