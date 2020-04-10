@@ -20,10 +20,10 @@ before_install:
 - stop_any 5432 5672 27017 3000 8000 8080 80 27017 5672 5432
 jobs:
   include:
-    - stage: test
-      name: gitbook
-      script:
-        - ./gradlew clean gitbook
+    #- stage: test
+    #  name: gitbook
+    #  script:
+    #    - ./gradlew clean gitbook
     - stage: test
       name: xml-message
       script:
@@ -34,18 +34,18 @@ jobs:
         - http :8080 message=message\ builder\ hello
         - http :8080/generic message=generic\ message\ hello
         - stop_any 8080 8000 80
-    - stage: test
-      name: spring-integration-5-example-01
-      script:
-        - cd $TRAVIS_BUILD_DIR/spring-integration-5-example-01 && ./gradlew clean build
-        - sudo mkdir -p /var/app
-        - sudo mv -f $TRAVIS_BUILD_DIR/spring-integration-5-example-01/build/libs/*.jar /var/app/01.jar
-        - sudo ln -s /var/app/01.jar /etc/init.d/01
-        - sudo service 01 start
-        - sleep 15
-        - curl localhost:8080/sse &
-        - sleep 5s
-        - sudo service 01 stop
+    #- stage: test
+    #  name: spring-integration-5-example-01
+    #  script:
+    #    - cd $TRAVIS_BUILD_DIR/spring-integration-5-example-01 && ./gradlew clean build
+    #    - sudo mkdir -p /var/app
+    #    - sudo mv -f $TRAVIS_BUILD_DIR/spring-integration-5-example-01/build/libs/*.jar /var/app/01.jar
+    #    - sudo ln -s /var/app/01.jar /etc/init.d/01
+    #    - sudo service 01 start
+    #    - sleep 15
+    #    - curl localhost:8080/sse &
+    #    - sleep 5s
+    #    - sudo service 01 stop
     - stage: test
       name: others
       script:
