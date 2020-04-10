@@ -27,7 +27,7 @@ jobs:
       name: xml-message
       script:
         - cd ./xml-channel
-        - ./mvnw >/dev/null 2>&1
+        - ./mvnw
         - bash target/*.jar &
         - wait_for 8080
         - http :8080
@@ -38,7 +38,7 @@ jobs:
       name: spring-integration-5-example-01
       script:
         - cd ./spring-integration-5-example-01
-        - ./gradlew clean build >/dev/null 2>&1
+        - ./gradlew clean build
         - sudo mkdir -p /var/app
         - sudo mv -f ./build/libs/*.jar /var/app/01.jar
         - sudo ln -s /var/app/01.jar /etc/init.d/01
@@ -58,8 +58,7 @@ jobs:
             xml-starter \
             spring-integration-5-example-02 \
           ; do
-            cd $root/$path
-            bash gradlew clean build >/dev/null 2>&1
+            cd $root/$path && ./gradlew clean build
           done;
 cache:
   directories:
