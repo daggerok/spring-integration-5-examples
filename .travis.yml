@@ -1,58 +1,69 @@
-service:
-- docker
+service: docker
 env:
   global:
   - TERM=dumb
 language: java
-jdk: oraclejdk8
-#jdk:
-#-oraclejdk8
-#- openjdk8
+jdk: openjdk8
+python: 3.8
 install: true
+apt:
+  update: true
+  packages:
+  - jq
+  - curl
+  - httpie
+  - docker-ce 
+  - libxml2-utils
 before_install:
-# install docker-compose
-- sudo apt update -y || true >/dev/null 2>&1
-- sudo apt install -y --no-install-recommends docker-ce python-pip curl jq libxml2-utils >/dev/null 2>&1
-- sudo pip install docker-compose httpie >/dev/null 2>&1
-# kill on ports
 - source <(curl -s https://raw.githubusercontent.com/daggerok/bash-functions/master/main.bash)
 - stop_any 5432 5672 27017 3000 8000 8080 80 27017 5672 5432
-script:
-# gitbook
-- bash gradlew clean gitbook
-- export root=$(pwd)
-# xml-message
-- cd $root/xml-channel
-- bash ./mvnw >/dev/null 2>&1
-- bash target/*.jar &
-- wait_for 8080
-- http :8080
-- http :8080 message=message\ builder\ hello
-- http :8080/generic message=generic\ message\ hello
-- stop_any 8080 8000 80
-# 01 e2e
-- cd $root/spring-integration-5-example-01
-- bash gradlew clean build >/dev/null 2>&1
-- sudo mkdir -p /var/app
-- sudo mv -f ./build/libs/*.jar /var/app/01.jar
-- sudo ln -s /var/app/01.jar /etc/init.d/01
-- sudo service 01 start
-- sleep 15
-- curl localhost:8080/sse &
-- sleep 1
-- sudo service 01 stop
-# others
-- >
-  for path in \
-    xml-message \
-    xml-hello \
-    xml-starter \
-    spring-integration-5-example-02 \
-  ; do
-    cd $root/$path
-    bash gradlew clean build >/dev/null 2>&1
-  done;
+jobs:
+  include:
+    - stage: test
+      name: gitbook
+      script:
+        - bash gradlew clean gitbook
+    - stage: test
+      name: xml-message
+      script:
+        - cd xml-channel
+        - bash ./mvnw >/dev/null 2>&1
+        - bash target/*.jar &
+        - wait_for 8080
+        - http :8080
+        - http :8080 message=message\ builder\ hello
+        - http :8080/generic message=generic\ message\ hello
+        - stop_any 8080 8000 80
+    - stage: test
+      name: spring-integration-5-example-01
+      script:
+        - cd $root/spring-integration-5-example-01
+        - bash gradlew clean build >/dev/null 2>&1
+        - sudo mkdir -p /var/app
+        - sudo mv -f ./build/libs/*.jar /var/app/01.jar
+        - sudo ln -s /var/app/01.jar /etc/init.d/01
+        - sudo service 01 start
+        - sleep 15
+        - curl localhost:8080/sse &
+        - sleep 1
+        - sudo service 01 stop
+    - stage: test
+      name: others
+      script:
+        - export root=`pwd`
+        - >
+          for path in \
+            xml-message \
+            xml-hello \
+            xml-starter \
+            spring-integration-5-example-02 \
+          ; do
+            cd $root/$path
+            bash gradlew clean build >/dev/null 2>&1
+          done;
 cache:
   directories:
+  - ~/.n*
+  - ~/.gradle
   - node_modules
   - gitbook/node_modules
