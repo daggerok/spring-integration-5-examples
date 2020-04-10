@@ -1,6 +1,6 @@
 = spring-integration-5-examples image:https://travis-ci.org/daggerok/spring-integration-5-examples.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/spring-integration-5-examples"]
 
-see this! link:https://github.com/daggerok/spring-cloud-function-stream-integration[spring-cloud-function and spring-cloud-stream integration]
+== example
 
 this repository is containing spring-integration 5 examples
 
@@ -12,6 +12,12 @@ this repository is containing spring-integration 5 examples
 . link:xml-hello[simple xml example]
 . link:spring-integration-5-example-01[sse]
 . link:reactive-data-flow-systems/[reactive data-flow systems]
+
+== other repositories
+
+. link:https://github.com/daggerok/spring-integration-kotlin-dsl[GitHub: daggerok/spring-integration-kotlin-dsl]
+. link:https://github.com/daggerok/spring-integration-java-DSL-example[GitHub: daggerok/spring-integration-java-DSL-example]
+. link:https://github.com/daggerok/spring-cloud-function-stream-integration[spring-cloud-function and spring-cloud-stream integration]
 
 links:
 
