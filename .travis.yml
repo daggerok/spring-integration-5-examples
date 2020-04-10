@@ -1,7 +1,8 @@
 cache:
   directories:
+  - ~/.g*
+  - ~/.m*
   - ~/.n*
-  - ~/.gradle
   - node_modules
   - gitbook/node_modules
 service: docker
