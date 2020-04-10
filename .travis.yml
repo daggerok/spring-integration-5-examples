@@ -1,19 +1,20 @@
 service: docker
 env:
   global:
-  - TERM=dumb
+    - TERM=dumb
 language: java
 jdk: openjdk8
 python: 3.8
 install: true
-apt:
-  update: true
-  packages:
-  - jq
-  - curl
-  - httpie
-  - docker-ce 
-  - libxml2-utils
+addons:
+  apt:
+    update: true
+    packages:
+      - jq
+      - curl
+      - httpie
+      - docker-ce 
+      - libxml2-utils
 before_install:
 - source <(curl -s https://raw.githubusercontent.com/daggerok/bash-functions/master/main.bash)
 - stop_any 5432 5672 27017 3000 8000 8080 80 27017 5672 5432
