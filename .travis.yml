@@ -22,12 +22,12 @@ jobs:
     - stage: test
       name: gitbook
       script:
-        - bash gradlew clean gitbook
+        - ./gradlew clean gitbook
     - stage: test
       name: xml-message
       script:
-        - cd xml-channel
-        - bash ./mvnw >/dev/null 2>&1
+        - cd ./xml-channel
+        - ./mvnw >/dev/null 2>&1
         - bash target/*.jar &
         - wait_for 8080
         - http :8080
@@ -37,20 +37,20 @@ jobs:
     - stage: test
       name: spring-integration-5-example-01
       script:
-        - cd $root/spring-integration-5-example-01
-        - bash gradlew clean build >/dev/null 2>&1
+        - cd ./spring-integration-5-example-01
+        - ./gradlew clean build >/dev/null 2>&1
         - sudo mkdir -p /var/app
         - sudo mv -f ./build/libs/*.jar /var/app/01.jar
         - sudo ln -s /var/app/01.jar /etc/init.d/01
         - sudo service 01 start
         - sleep 15
         - curl localhost:8080/sse &
-        - sleep 1
+        - sleep 5s
         - sudo service 01 stop
     - stage: test
       name: others
       script:
-        - export root=`pwd`
+        - export root=$(pwd)
         - >
           for path in \
             xml-message \
