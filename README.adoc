@@ -4,21 +4,21 @@
 
 this repository is containing spring-integration 5 examples
 
-. link:xml-messaging-template[messaging-template component]
-. link:xml-service-activator[service activator component]
-. link:xml-endpoint[endpoint component]
-. link:xml-channel[chanel component]
-. link:xml-message[message component]
-. link:xml-hello[simple xml example]
-. link:spring-integration-5-example-01[sse]
-. link:reactive-data-flow-systems/[reactive data-flow systems]
+* link:xml-messaging-template[messaging-template component]
+* link:xml-service-activator[service activator component]
+* link:xml-endpoint[endpoint component]
+* link:xml-channel[chanel component]
+* link:xml-message[message component]
+* link:xml-hello[simple xml example]
+* link:spring-integration-5-example-01[sse]
+* link:reactive-data-flow-systems/[reactive data-flow systems]
 
 == other repositories
 
-. link:https://github.com/daggerok/spring-integration-kotlin-dsl[GitHub: daggerok/spring-integration-kotlin-dsl]
-. link:https://github.com/daggerok/spring-integration-java-DSL-example[GitHub: daggerok/spring-integration-java-DSL-example]
-. link:https://github.com/daggerok/spring-cloud-function-stream-integration[spring-cloud-function and spring-cloud-stream integration]
+* link:https://github.com/daggerok/spring-integration-kotlin-dsl[GitHub: daggerok/spring-integration-kotlin-dsl]
+* link:https://github.com/daggerok/spring-integration-java-DSL-example[GitHub: daggerok/spring-integration-java-DSL-example]
+* link:https://github.com/daggerok/spring-cloud-function-stream-integration[spring-cloud-function and spring-cloud-stream integration]
 
-links:
+== resources
 
-. link:https://github.com/spring-projects/spring-integration-java-dsl/wiki/spring-integration-java-dsl-reference[Java DSL]
+* link:https://github.com/spring-projects/spring-integration-java-dsl/wiki/spring-integration-java-dsl-reference[Java DSL]
